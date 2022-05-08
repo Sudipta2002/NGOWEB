@@ -17,6 +17,7 @@
     },
     "homepage": "https://github.com/Sudipta2002/NGOWEB#readme",
     "dependencies": {
+        "@chakra-ui/icons": "^1.1.7",
         "axios": "^0.27.2",
         "bcryptjs": "^2.4.3",
         "create-react-app": "^5.0.1",

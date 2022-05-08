@@ -7,6 +7,7 @@ const clientUserSchema = mongoose.Schema({
     //password
     //pic(may or may not)
     name: { type: String, required: true },
+    city: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     pic: {

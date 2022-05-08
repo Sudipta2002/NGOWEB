@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import {Button,FormControl,FormLabel,Input,InputGroup,InputRightElement,toast,useToast,VStack } from '@chakra-ui/react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { UserState } from '../../Context/userProvider';
 const LoginUser = () => {
     const [show1,setShow1]=useState(false);
   const [email,setEmail]=useState();
   const [password,setPassword]=useState();
   const[loading,setLoading]=useState(false);
   const toast = useToast();
+  const {setSearch}=UserState();
   const navigate = useNavigate();
   const handleClick1=()=>{
     setShow1(!show1);
@@ -33,6 +35,8 @@ const submitHandler= async()=>{
     };
     const {data}= await axios.post("/api/clientuser/login",{email,password},
     config);
+    setSearch(data.city);
+    
     toast({
       title: 'Logged In Successfully',
       status: 'success',

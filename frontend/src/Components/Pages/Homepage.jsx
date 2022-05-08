@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Container,Box,Text} from '@chakra-ui/react';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import ClientFinder from '../Authentication/ClientFinder';
 // import NGOFinder from '../Authentication/NgoFinder';
 import NgoFinder from '../Authentication/NgoFinder';
-
+import { useNavigate } from 'react-router-dom';
 const Homepage = () => {
+  const navigate = useNavigate();
+
+    useEffect(() => {
+     const user1=JSON.parse(localStorage.getItem("clientUserInfo"));
+    //  const user2=JSON.parse(localStorage.getItem("ngoUserInfo"));
+     
+     if(user1){
+       console.log("getting called");
+        navigate('/client');
+      }
+    }, [navigate])
   return (
         <Container maxW='xl' centerContent>
           <Box 

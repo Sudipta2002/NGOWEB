@@ -3,6 +3,7 @@ import {Button,FormControl,FormLabel,Input,InputGroup,InputRightElement,VStack }
 import { useToast } from '@chakra-ui/react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { UserState } from '../../Context/userProvider';
 
 const SignupUser = () => {
 const [show1,setShow1]=useState(false);
@@ -12,8 +13,11 @@ const [show1,setShow1]=useState(false);
   const [password,setPassword]=useState();
   const [confirmpassword,setConfirmpassword]=useState();
   const [pic,setPic]=useState();
+  const [city,setCity]=useState();
+  // const [search,setSearch]=useState("");
   const[loading,setLoading]=useState(false);
   const toast = useToast();
+  const {setSearch}=UserState();
   const navigate = useNavigate();
   const handleClick1=()=>{
     setShow1(!show1);
@@ -65,7 +69,7 @@ const postDetails=(pics)=>{
   }
 const submitHandler=async()=>{
   setLoading(true);
-  if(!name || !email || !password || !confirmpassword){
+  if(!name || !email || !password || !confirmpassword||!city){
     toast({
       title: 'Please Fill all the Fields',
       status: 'warning',
@@ -88,14 +92,19 @@ const submitHandler=async()=>{
     return;
   }
   try {
-    const config={
+    const config1={
       headers:{
         "Content-type":"application/json",
       },
     };
-    const {data}= await axios.post("/api/clientuser",{name,email,password,pic},
-    config);
-    // console.log(data);
+    
+    const {data}= await axios.post("/api/clientuser",{name,city,email,password,pic},
+    config1);
+    // console.log(data1);
+    localStorage.setItem('clientUserInfo',JSON.stringify(data));
+    // const {data2}= await axios.get(`/api/clientuser?search=${search}`,config2);
+    // setNgoSearch(data2);
+    // console.log(data2);
     toast({
       title: 'Registration Successfull',
       status: 'success',
@@ -103,7 +112,6 @@ const submitHandler=async()=>{
       isClosable: true,
       position:"bottom",
     });  
-    localStorage.setItem('clientUserInfo',JSON.stringify(data));
     setLoading(false);
     navigate('/client');
   } catch (error) {
@@ -122,6 +130,10 @@ const submitHandler=async()=>{
     <FormControl id='first-name' isRequired>
       <FormLabel>Name of Client</FormLabel>
         <Input borderColor="black" color="black" placeholder='Enter your Name' onChange={(e)=>{setName(e.target.value)}}/>
+    </FormControl>
+    <FormControl id='first-name' isRequired>
+      <FormLabel>City</FormLabel>
+        <Input borderColor="black" color="black" placeholder='Enter the city Name' onChange={(e)=>{setCity(e.target.value);setSearch(e.target.value)}}/>
     </FormControl>
 
     <FormControl id='email' isRequired>

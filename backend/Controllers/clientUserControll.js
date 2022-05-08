@@ -1,9 +1,10 @@
 const asyncHandler = require('express-async-handler');
 const generateToken = require('../Config/generateToken');
 const clientUser = require('../Models/clientUserModel');
+const ngoUser = require('../Models/ngoUserModel');
 const registerUser = asyncHandler(async(req, res) => {
-    const { name, email, password, pic } = req.body;
-    if (!name || !email || !password) {
+    const { name, city, email, password, pic } = req.body;
+    if (!name || !email || !password || !city) {
         res.status(400);
         throw new Error("Please Enter all the fields");
     }
@@ -14,6 +15,7 @@ const registerUser = asyncHandler(async(req, res) => {
     }
     const user = await clientUser.create({
         name,
+        city,
         email,
         password,
         pic,
@@ -22,6 +24,7 @@ const registerUser = asyncHandler(async(req, res) => {
         res.status(201).json({
             _id: user._id,
             name: user.name,
+            city: user.city,
             email: user.email,
             pic: user.pic,
             token: generateToken(user._id),
@@ -38,6 +41,7 @@ const authUser = asyncHandler(async(req, res) => {
         res.status(201).json({
             _id: user._id,
             name: user.name,
+            city: user.city,
             email: user.email,
             pic: user.pic,
             token: generateToken(user._id),
@@ -47,4 +51,13 @@ const authUser = asyncHandler(async(req, res) => {
         throw new Error("Failed to Create the User");
     }
 });
-module.exports = { registerUser, authUser };
+
+const allNgos = asyncHandler(async(req, res) => {
+    const keyword = req.query.search ? {
+        city: { $regex: req.query.search, $options: "i" }
+    } : {};
+
+    const ngousers = await ngoUser.find(keyword);
+    res.send(ngousers);
+});
+module.exports = { registerUser, authUser, allNgos };

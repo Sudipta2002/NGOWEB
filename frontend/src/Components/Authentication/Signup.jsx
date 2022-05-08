@@ -12,6 +12,7 @@ const [show1,setShow1]=useState(false);
   const [password,setPassword]=useState();
   const [confirmpassword,setConfirmpassword]=useState();
   const [pic,setPic]=useState();
+  const [city,setCity]=useState();
   const[loading,setLoading]=useState(false);
   const toast = useToast();
   const navigate = useNavigate();
@@ -93,7 +94,7 @@ const submitHandler=async()=>{
         "Content-type":"application/json",
       },
     };
-    const {data}= await axios.post("/api/ngouser",{name,email,password,pic},
+    const {data}= await axios.post("/api/ngouser",{name,city,email,password,pic},
     config);
     // console.log(data);
     toast({
@@ -121,13 +122,19 @@ const submitHandler=async()=>{
     <VStack spacing='5px' color="black">
     <FormControl id='first-name' isRequired>
       <FormLabel>Name of NGO</FormLabel>
-        <Input borderColor="black" color="black" placeholder='Enter your Name' onChange={(e)=>{setName(e.target.value)}}/>
+        <Input borderColor="black" color="black" placeholder='Enter NGO Name' onChange={(e)=>{setName(e.target.value)}}/>
+    </FormControl>
+
+    <FormControl id='first-name' isRequired>
+      <FormLabel>City</FormLabel>
+        <Input borderColor="black" color="black" placeholder='Enter the city Name' onChange={(e)=>{setCity(e.target.value)}}/>
     </FormControl>
 
     <FormControl id='email' isRequired>
       <FormLabel>Email of NGO</FormLabel>
         <Input borderColor="black" color="black" placeholder='Enter your Email' onChange={(e)=>{setEmail(e.target.value)}}/>
     </FormControl>
+
     <FormControl id='password' isRequired>
       <FormLabel>Password</FormLabel>
       <InputGroup>
