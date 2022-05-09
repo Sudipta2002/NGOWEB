@@ -5,6 +5,7 @@ const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
     const [clientuser, setClientUser] = useState();
+    const [ngouser, setNgoUser] = useState();
     const [ngoSearch, setNgoSearch] = useState([]);
     const [search,setSearch]=useState("");
     const [searchDistrict,setSearchDistrict]=useState("");
@@ -14,14 +15,17 @@ const UserProvider = ({ children }) => {
 
     useEffect(() => {
         const userInfo = JSON.parse(localStorage.getItem("clientUserInfo"));
+        const ngouserInfo = JSON.parse(localStorage.getItem("ngoUserInfo"));
         setClientUser(userInfo);
-        if (!clientuser) {
+        setNgoUser(ngouserInfo);
+        if (!clientuser && !ngouser) {
             navigate('/');
         }
+        
     }, [navigate])
 
     return <UserContext.Provider value = {
-        { clientuser, setClientUser,search,setSearch,ngoSearch, setNgoSearch,searchDistrict,
+        { clientuser,ngouser, setClientUser,search,setSearch,ngoSearch, setNgoSearch,searchDistrict,
             setSearchDistrict,searchState,setSearchState,searchCountry,setSearchCountry}
     } > { children } </UserContext.Provider>
 };

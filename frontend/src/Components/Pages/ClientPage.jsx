@@ -20,7 +20,7 @@ const ClientPage = () => {
     localStorage.removeItem("clientUserInfo");
     navigate("/");
   };
-  console.log({search});
+  // console.log({search});
   const call=async()=>{
     try {
           setLoading(true);

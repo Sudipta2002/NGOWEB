@@ -75,7 +75,7 @@ const submitHandler= async()=>{
      onClick={submitHandler}
      >
               Login     </Button>
-    <Button colorScheme={"red"} width="100%" style={{marginTop:15}} onClick={()=>{ setEmail("guest@example.com"); setPassword("123456789")}}>
+    <Button colorScheme={"red"} width="100%" style={{marginTop:15}} onClick={()=>{ setEmail("guest@example.com"); setPassword("123456")}}>
               Login as a Guest User
     </Button>
   </VStack>

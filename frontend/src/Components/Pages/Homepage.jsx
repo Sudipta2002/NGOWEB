@@ -10,11 +10,15 @@ const Homepage = () => {
 
     useEffect(() => {
      const user1=JSON.parse(localStorage.getItem("clientUserInfo"));
-    //  const user2=JSON.parse(localStorage.getItem("ngoUserInfo"));
+     const user2=JSON.parse(localStorage.getItem("ngoUserInfo"));
      
      if(user1){
       //  console.log("getting called");
         navigate('/client');
+      }
+     if(user2){
+      //  console.log("getting called");
+        navigate('/ngo');
       }
     }, [navigate])
   return (
