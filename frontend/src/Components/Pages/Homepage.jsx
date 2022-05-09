@@ -13,7 +13,7 @@ const Homepage = () => {
     //  const user2=JSON.parse(localStorage.getItem("ngoUserInfo"));
      
      if(user1){
-       console.log("getting called");
+      //  console.log("getting called");
         navigate('/client');
       }
     }, [navigate])

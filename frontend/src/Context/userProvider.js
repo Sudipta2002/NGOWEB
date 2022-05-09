@@ -5,7 +5,7 @@ const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
     const [clientuser, setClientUser] = useState();
-    // const [ngoSearch, setNgoSearch] = useState([]);
+    const [ngoSearch, setNgoSearch] = useState([]);
     const [search,setSearch]=useState("")
     const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const UserProvider = ({ children }) => {
     }, [navigate])
 
     return <UserContext.Provider value = {
-        { clientuser, setClientUser,search,setSearch}
+        { clientuser, setClientUser,search,setSearch,ngoSearch, setNgoSearch}
     } > { children } </UserContext.Provider>
 };
 export const UserState = () => {

@@ -1,0 +1,102 @@
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    align-self: center;
+    color: rgb(10, 9, 9);
+}
+
+.header-container>h1 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.9em;
+    line-height: 57px;
+    text-align: center;
+    letter-spacing: 0.2px;
+    color: rgb(6, 5, 5);
+    margin: 0;
+}
+
+.project-cards-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 25px;
+    align-self: center;
+    justify-content: center;
+}
+
+.section-container {
+    width: 100%;
+    background-color: rgb(241, 190, 190);
+}
+
+.project-card {
+    width: 296px;
+    height: 400px;
+    background: rgb(203, 213, 240);
+    box-shadow: 10px 40px 50px rgb(229 233 246 / 40%);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    margin: 29px;
+}
+
+.project-card:hover {
+    box-shadow: 0 24px 38px rgba(3, 8, 80, 0.25), 0 10px 10px rgba(3, 31, 92, 0.22);
+    transition: all 0.3s;
+}
+
+.image-container :hover {
+    box-shadow: 0 24px 38px rgba(3, 8, 80, 0.25), 0 10px 10px rgba(3, 31, 92, 0.22);
+    transition: all 0.3s;
+}
+
+.image-container {
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+}
+
+.project-external-link {
+    border-radius: inherit;
+}
+
+.project-image {
+    display: block;
+    border-radius: inherit;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.project-details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: flex-start;
+    padding: 20px;
+}
+
+.project-heading {
+    margin: 0;
+}
+
+.project-details {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 28px;
+    color: #070214;
+}
+
+@media only screen and (max-width: 640px) {
+    .header-container {
+        width: 80%;
+    }
+    .project-cards-container {
+        padding: 20px;
+    }
+    .project-card {
+        width: 290px;
+        min-height: 500px;
+    }
+}
