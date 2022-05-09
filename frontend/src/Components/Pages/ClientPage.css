@@ -1,6 +1,6 @@
 .header-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     width: 100%;
     align-self: center;
@@ -16,6 +16,8 @@
     letter-spacing: 0.2px;
     color: rgb(6, 5, 5);
     margin: 0;
+    /* width: ; */
+    width: -webkit-fill-available;
 }
 
 .project-cards-container {
@@ -30,6 +32,10 @@
 .section-container {
     width: 100%;
     background-color: rgb(241, 190, 190);
+}
+
+.log {
+    height: 1%;
 }
 
 .project-card {

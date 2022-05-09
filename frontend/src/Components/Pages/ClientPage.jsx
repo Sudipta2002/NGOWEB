@@ -51,15 +51,17 @@ const ClientPage = () => {
     <div className="section-container">
       <div className="header-container">
               <h1>Listed NGOs nearer to Your location</h1>
-              
-        <Menu>
-          <MenuButton as={Button} rightIcon={<ChevronDownIcon/>}>
-              {/* <Avatar size="sm" cursor={"pointer"} name={clientuser.name} src={clientuser.pic}/> */}
-          </MenuButton>
-          <MenuList>
-            <MenuItem onClick={logoutHandler}>LogOut</MenuItem>
-          </MenuList>
-        </Menu>
+              <div className='log'>
+
+                <Menu>
+                  <MenuButton as={Button} rightIcon={<ChevronDownIcon/>}>
+                      {/* <Avatar size="sm" cursor={"pointer"} name={clientuser.name} src={clientuser.pic}/> */}
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem onClick={logoutHandler}>LogOut</MenuItem>
+                  </MenuList>
+                </Menu>
+              </div>
       </div>
       <div className="project-cards-container">
           {
@@ -69,6 +71,7 @@ const ClientPage = () => {
           }
       </div>
     </div>
+      
     </>
   )
 }
