@@ -11,7 +11,8 @@ import axios from 'axios';
 import Cards from './Cards';
 
 const ClientPage = () => {
-  const {clientuser,search,ngoSearch, setNgoSearch}=UserState();
+  const {clientuser,search,ngoSearch, setNgoSearch,searchDistrict,
+    searchState,searchCountry}=UserState();
   const [loading, setLoading] = useState(false)
   const toast= useToast();
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const ClientPage = () => {
               Authorization:`Bearer ${clientuser.token}`,
             },
           };
-          const {data}= await axios.get(`/api/clientuser?search=${search}`,config);
+          const {data}= await axios.get(`/api/clientuser?search=${search}&district=${searchDistrict}&state=${searchState}&country=${searchCountry}`,config);
           setLoading(false);
           setNgoSearch(data);
           console.log(data);

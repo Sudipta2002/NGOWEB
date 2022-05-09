@@ -8,6 +8,9 @@ const clientUserSchema = mongoose.Schema({
     //pic(may or may not)
     name: { type: String, required: true },
     city: { type: String, required: true },
+    district: { type: String, required: true },
+    state: { type: String, required: true },
+    country: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     pic: {

@@ -14,10 +14,12 @@ const [show1,setShow1]=useState(false);
   const [confirmpassword,setConfirmpassword]=useState();
   const [pic,setPic]=useState();
   const [city,setCity]=useState();
-  // const [search,setSearch]=useState("");
+  const [district,setDistrict]=useState();
+  const [state,setState]=useState();
+  const [country,setCoutry]=useState();
   const[loading,setLoading]=useState(false);
   const toast = useToast();
-  const {setSearch}=UserState();
+  const {setSearch,setSearchDistrict,setSearchState,setSearchCountry}=UserState();
   const navigate = useNavigate();
   const handleClick1=()=>{
     setShow1(!show1);
@@ -69,7 +71,7 @@ const postDetails=(pics)=>{
   }
 const submitHandler=async()=>{
   setLoading(true);
-  if(!name || !email || !password || !confirmpassword||!city){
+  if(!name || !email || !password || !confirmpassword || !city || !district || !country || !state){
     toast({
       title: 'Please Fill all the Fields',
       status: 'warning',
@@ -98,7 +100,7 @@ const submitHandler=async()=>{
       },
     };
     
-    const {data}= await axios.post("/api/clientuser",{name,city,email,password,pic},
+    const {data}= await axios.post("/api/clientuser",{name,city,district,state,country,email,password,pic},
     config1);
     // console.log(data1);
     localStorage.setItem('clientUserInfo',JSON.stringify(data));
@@ -134,6 +136,18 @@ const submitHandler=async()=>{
     <FormControl id='first-name' isRequired>
       <FormLabel>City</FormLabel>
         <Input borderColor="black" color="black" placeholder='Enter the city Name' onChange={(e)=>{setCity(e.target.value);setSearch(e.target.value)}}/>
+    </FormControl>
+    <FormControl id='first-name' isRequired>
+      <FormLabel>District</FormLabel>
+        <Input borderColor="black" color="black" placeholder='Enter the city Name' onChange={(e)=>{setDistrict(e.target.value);setSearchDistrict(e.target.value)}}/>
+    </FormControl>
+    <FormControl id='first-name' isRequired>
+      <FormLabel>State</FormLabel>
+        <Input borderColor="black" color="black" placeholder='Enter the city Name' onChange={(e)=>{setState(e.target.value);setSearchState(e.target.value)}}/>
+    </FormControl>
+    <FormControl id='first-name' isRequired>
+      <FormLabel>Country</FormLabel>
+        <Input borderColor="black" color="black" placeholder='Enter the city Name' onChange={(e)=>{setCoutry(e.target.value);setSearchCountry(e.target.value)}}/>
     </FormControl>
 
     <FormControl id='email' isRequired>

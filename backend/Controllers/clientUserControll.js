@@ -3,8 +3,8 @@ const generateToken = require('../Config/generateToken');
 const clientUser = require('../Models/clientUserModel');
 const ngoUser = require('../Models/ngoUserModel');
 const registerUser = asyncHandler(async(req, res) => {
-    const { name, city, email, password, pic } = req.body;
-    if (!name || !email || !password || !city) {
+    const { name, city, district, state, country, email, password, pic } = req.body;
+    if (!name || !email || !password || !city || !district || !state || !country) {
         res.status(400);
         throw new Error("Please Enter all the fields");
     }
@@ -16,6 +16,9 @@ const registerUser = asyncHandler(async(req, res) => {
     const user = await clientUser.create({
         name,
         city,
+        district,
+        state,
+        country,
         email,
         password,
         pic,
@@ -25,6 +28,9 @@ const registerUser = asyncHandler(async(req, res) => {
             _id: user._id,
             name: user.name,
             city: user.city,
+            district: user.district,
+            state: user.state,
+            country: user.country,
             email: user.email,
             pic: user.pic,
             token: generateToken(user._id),
@@ -42,6 +48,9 @@ const authUser = asyncHandler(async(req, res) => {
             _id: user._id,
             name: user.name,
             city: user.city,
+            district: user.district,
+            state: user.state,
+            country: user.country,
             email: user.email,
             pic: user.pic,
             token: generateToken(user._id),
@@ -53,11 +62,30 @@ const authUser = asyncHandler(async(req, res) => {
 });
 
 const allNgos = asyncHandler(async(req, res) => {
-    const keyword = req.query.search ? {
+    let keyword = req.query.search ? {
         city: { $regex: req.query.search, $options: "i" }
     } : {};
-
-    const ngousers = await ngoUser.find(keyword);
+    let ngousers = await ngoUser.find(keyword);
+    // console.log(ngousers.length);
+    // console.log(keyword);
+    if (ngousers.length < 1) {
+        keyword = req.query.district ? {
+            district: { $regex: req.query.district, $options: "i" }
+        } : {}
+    }
+    ngousers = await ngoUser.find(keyword);
+    if (ngousers.length < 1) {
+        keyword = req.query.state ? {
+            state: { $regex: req.query.state, $options: "i" }
+        } : {}
+    }
+    ngousers = await ngoUser.find(keyword);
+    if (ngousers.length < 1) {
+        keyword = req.query.country ? {
+            country: { $regex: req.query.country, $options: "i" }
+        } : {}
+    }
+    ngousers = await ngoUser.find(keyword);
     res.send(ngousers);
 });
 module.exports = { registerUser, authUser, allNgos };

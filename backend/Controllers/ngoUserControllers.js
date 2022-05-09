@@ -2,8 +2,8 @@ const asyncHandler = require('express-async-handler');
 const generateToken = require('../Config/generateToken');
 const ngoUser = require('../Models/ngoUserModel');
 const registerUser = asyncHandler(async(req, res) => {
-    const { name, city, email, password, pic } = req.body;
-    if (!name || !email || !password || !city) {
+    const { name, city, district, state, country, email, password, pic } = req.body;
+    if (!name || !email || !password || !city || !district || !state || !country) {
         res.status(400);
         throw new Error("Please Enter all the fields");
     }
@@ -15,6 +15,9 @@ const registerUser = asyncHandler(async(req, res) => {
     const user = await ngoUser.create({
         name,
         city,
+        district,
+        state,
+        country,
         email,
         password,
         pic,
@@ -24,6 +27,9 @@ const registerUser = asyncHandler(async(req, res) => {
             _id: user._id,
             name: user.name,
             city: user.city,
+            district: user.district,
+            state: user.state,
+            country: user.country,
             email: user.email,
             pic: user.pic,
             token: generateToken(user._id),
@@ -41,6 +47,9 @@ const authUser = asyncHandler(async(req, res) => {
             _id: user._id,
             name: user.name,
             city: user.city,
+            district: user.district,
+            state: user.state,
+            country: user.country,
             email: user.email,
             pic: user.pic,
             token: generateToken(user._id),
