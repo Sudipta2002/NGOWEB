@@ -66,8 +66,8 @@ const ClientPage = () => {
       </div>
       <div className="project-cards-container">
           {
-              ngoSearch.map(({name,city,pic,email})=>{
-                  return <Cards name={name} pic={pic} city={city} email={email}/>
+              ngoSearch.map(({name,city,pic,email,web})=>{
+                  return <Cards name={name} pic={pic} web={web} city={city} email={email}/>
               })
           }
       </div>

@@ -11,6 +11,7 @@ const [show1,setShow1]=useState(false);
   const [email,setEmail]=useState();
   const [password,setPassword]=useState();
   const [confirmpassword,setConfirmpassword]=useState();
+  const [web,setWeb]=useState();
   const [pic,setPic]=useState();
   const [city,setCity]=useState();
   const [district,setDistrict]=useState();
@@ -69,7 +70,7 @@ if(pics.type==="image/jpeg" || pics.type==="image/png"){
 }
 const submitHandler=async()=>{
   setLoading(true);
-  if(!name || !email || !password || !confirmpassword || !city || !district || !country || !state){
+  if(!name || !email || !password || !confirmpassword || !city || !district || !country || !state || !web){
     toast({
       title: 'Please Fill all the Fields',
       status: 'warning',
@@ -97,7 +98,7 @@ const submitHandler=async()=>{
         "Content-type":"application/json",
       },
     };
-    const {data}= await axios.post("/api/ngouser",{name,city,district,state,country,email,password,pic},
+    const {data}= await axios.post("/api/ngouser",{name,city,district,state,country,email,password,web,pic},
     config);
     // console.log(data);
     toast({
@@ -173,6 +174,10 @@ const submitHandler=async()=>{
         </InputRightElement>
       </InputGroup>
         {/* <Input borderColor="black" color="black" placeholder='Enter your Password' onChange={(e)=>{setConfirmpassword(e.target.value)}}/> */}
+    </FormControl>
+    <FormControl id='email' isRequired>
+      <FormLabel>Website Link</FormLabel>
+        <Input borderColor="black" color="black" placeholder='Enter your Web Link' onChange={(e)=>{setWeb(e.target.value)}}/>
     </FormControl>
     <FormControl id='pic'>
       <FormLabel>Upload Pic of NGO</FormLabel>

@@ -1,10 +1,10 @@
 import React from 'react'
 import './ClientPage.css';
-const Cards = ({name,pic,city,email}) => {
+const Cards = ({name,pic,city,email,web}) => {
     return (
         <div className="project-card">
             <div className="image-container">
-                <a target='_blank' rel='noreferrer'  className="project-external-link">
+                <a href={web} className="project-external-link">
                     <img src={pic} alt="project" className="project-image"/>
                 </a>
             </div>

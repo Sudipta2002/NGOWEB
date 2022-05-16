@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs/dist/bcrypt');
 const mongoose = require('mongoose');
+require('mongoose-type-url');
 //creating userModel
 const ngoUserSchema = mongoose.Schema({
     //name
@@ -16,6 +17,7 @@ const ngoUserSchema = mongoose.Schema({
     // country: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    web: { type: mongoose.SchemaTypes.Url, required: true },
     pic: {
         type: String,
         default: "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
