@@ -41,6 +41,7 @@ const registerUser = asyncHandler(async(req, res) => {
         throw new Error("Failed to Create the User");
     }
 });
+
 const authUser = asyncHandler(async(req, res) => {
     const { email, password } = req.body;
     const user = await ngoUser.findOne({ email });

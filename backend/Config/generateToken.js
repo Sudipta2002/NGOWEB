@@ -5,4 +5,5 @@ const generateToken = (id) => {
         expiresIn: "720d",
     })
 };
+
 module.exports = generateToken;

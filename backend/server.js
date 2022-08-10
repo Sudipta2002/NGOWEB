@@ -26,6 +26,7 @@ if (process.env.NODE_ENV == 'production') {
         res.send("APP is running ");
     })
 }
+////////-------end-deployment-------------/////////
 //middlewares
 app.use(notFound);
 app.use(errorHandler);
