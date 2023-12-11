@@ -2,11 +2,7 @@
     "name": "frontend",
     "version": "0.1.0",
     "private": true,
-    "proxy": {
-        "/auth/google": {
-            "target": "localhost:5000"
-        }
-    },
+    "proxy": "http://127.0.0.1:5000/",
     "dependencies": {
         "@chakra-ui/react": "^1.8.8",
         "@emotion/react": "^11.9.0",

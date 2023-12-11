@@ -15,7 +15,7 @@ const NgoPage = () => {
   return (
     <div className="section-container">
       <div className="header-container">
-              <h1>Dashboard</h1>
+              <h1>Visit Again</h1>
               <div className='log'>
                 <Menu>
                   <MenuButton as={Button} rightIcon={<ChevronDownIcon/>}>
@@ -27,7 +27,10 @@ const NgoPage = () => {
                 </Menu>
               </div>
       </div>
+      <div className="middle-container">
+        <h1>Thanks For Visiting Us</h1>
       </div>
+    </div>
   )
 }
 
